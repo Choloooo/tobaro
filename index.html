@@ -4,259 +4,633 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tobaro Management Company Ltd — Home</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --navy:#1C3A4B;
-  --navy-deep:#122833;
-  --sand:#C9AD80;
-  --sand-light:#F4EEE1;
-  --white:#fff;
-  --ink:#2A2622;
-  --ink-soft:#5C6B72;
-  --line:rgba(28,58,75,0.14);
-}
+  :root{
+    --navy: #1C3A4B;
+    --navy-deep: #122833;
+    --sand: #C9AD80;
+    --sand-light: #F4EEE1;
+    --white: #FFFFFF;
+    --ink: #2A2622;
+    --ink-soft: #5C6B72;
+    --line: rgba(28,58,75,0.14);
+  }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--navy-deep);
+  }
+  a{text-decoration:none;color:inherit;}
+  img{display:block;max-width:100%;}
 
-html{
-  scroll-behavior:smooth;
-}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
 
-/* IMPORTANT: prevents sticky header covering sections */
-section{
-  scroll-margin-top:90px;
-}
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--navy-deep);
+    letter-spacing:0.01em;
+  }
+  .logo span{color:var(--sand);}
+  nav ul{display:flex; gap:36px; list-style:none;}
+  nav a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--ink-soft);
+    transition:color 0.2s ease;
+    position:relative;
+  }
+  nav a:hover, nav a:focus-visible{color:var(--navy);}
+  nav a:focus-visible{outline:2px solid var(--sand); outline-offset:4px; border-radius:2px;}
+  .nav-cta{
+    border:1px solid var(--navy);
+    padding:9px 20px;
+    border-radius:2px;
+    font-size:0.88rem;
+    font-weight:600;
+    color:var(--navy);
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .nav-cta:hover{background:var(--navy); color:var(--white);}
+  .nav-toggle{display:none;}
 
-body{
-  font-family:'Manrope',sans-serif;
-  color:var(--ink);
-  background:var(--white);
-}
-
-h1,h2,h3{
-  font-family:'Fraunces',serif;
-  font-weight:500;
-  color:var(--navy-deep);
-}
-
-a{text-decoration:none;color:inherit;}
-
-/* NAV */
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);
-}
-
-.nav-wrap{
-  max-width:1180px;
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 32px;
-}
-
-.logo{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:1.25rem;
-}
-
-.logo span{color:var(--sand);}
-
-nav ul{
-  display:flex;
-  gap:36px;
-  list-style:none;
-}
-
-nav a{
-  font-size:0.92rem;
-  color:var(--ink-soft);
-  transition:0.2s;
-}
-
-nav a:hover{
-  color:var(--navy);
-}
-
-nav a.active{
-  color:var(--navy);
-  font-weight:700;
-}
-
-.nav-cta{
-  border:1px solid var(--navy);
-  padding:9px 20px;
-  font-size:0.88rem;
-  font-weight:600;
-}
-
-.nav-cta:hover{
-  background:var(--navy);
-  color:#fff;
-}
-
-/* HERO */
-.hero{
-  background:var(--navy-deep);
-  color:#fff;
-  padding:120px 32px;
-}
-
-.hero-inner{
-  max-width:1180px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-}
-
-/* CTA */
-.btn-primary{
-  background:var(--sand);
-  padding:14px 28px;
-  font-weight:700;
-  display:inline-block;
-}
-
-.btn-ghost{
-  border:1px solid #fff;
-  padding:14px 28px;
-  color:#fff;
-}
-
-/* SECTIONS (simplified but preserved structure) */
-section{
-  padding:100px 32px;
-}
-
-.intro,.pillars,.origin,.why,.closing{
-  max-width:1180px;
-  margin:0 auto;
-}
-
-/* RESPONSIVE */
-@media(max-width:880px){
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--navy-deep);
+    color:var(--white);
+    overflow:hidden;
+    padding:0;
+  }
   .hero-inner{
-    grid-template-columns:1fr;
+    max-width:1180px; margin:0 auto;
+    padding:120px 32px 100px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:end;
+    position:relative; z-index:2;
   }
-  nav ul{
-    display:none;
+  .eyebrow{
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--sand);
+    margin-bottom:24px;
+    display:flex; align-items:center; gap:12px;
   }
-}
+  .eyebrow::before{
+    content:'';
+    width:28px; height:1px;
+    background:var(--sand);
+    display:inline-block;
+  }
+  .hero h1{
+    color:var(--white);
+    font-size:clamp(2.4rem, 4.6vw, 3.8rem);
+    line-height:1.08;
+    font-weight:500;
+    max-width:11.5ch;
+    opacity:0;
+    animation:rise 0.9s 0.1s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero-side{
+    opacity:0;
+    animation:rise 0.9s 0.35s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .hero p{
+    font-size:1.04rem;
+    line-height:1.7;
+    color:rgba(255,255,255,0.78);
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  @keyframes rise{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--sand);
+    color:var(--navy-deep);
+    padding:14px 28px;
+    border-radius:2px;
+    font-weight:700;
+    font-size:0.92rem;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(201,173,128,0.3);}
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,0.35);
+    color:var(--white);
+    padding:14px 28px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:0.92rem;
+    transition:border-color 0.25s ease, background 0.25s ease;
+  }
+  .btn-ghost:hover{border-color:var(--white); background:rgba(255,255,255,0.06);}
+
+  /* horizon-line signature: layered topographic strata evoking land + a rising trajectory */
+  .horizon{
+    position:absolute; left:0; right:0; bottom:0;
+    height:100%; z-index:1; pointer-events:none;
+  }
+  .horizon svg{width:100%; height:100%; display:block;}
+
+  /* ---------- INTRO STRIP ---------- */
+  .intro{
+    max-width:1180px; margin:0 auto;
+    padding:96px 32px 88px;
+    display:grid;
+    grid-template-columns:0.5fr 1fr;
+    gap:56px;
+  }
+  .intro-label{
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sand);
+    padding-top:6px;
+  }
+  .intro p{
+    font-size:1.32rem;
+    line-height:1.6;
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    color:var(--navy-deep);
+    max-width:34ch;
+  }
+  .intro p strong{font-weight:600;}
+
+  /* ---------- PILLARS ---------- */
+  .pillars{
+    background:var(--sand-light);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .pillars-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+  }
+  .pillar{
+    padding:64px 40px;
+    border-right:1px solid var(--line);
+    transition:background 0.3s ease;
+  }
+  .pillar:last-child{border-right:none;}
+  .pillar:hover{background:rgba(255,255,255,0.6);}
+  .pillar-mark{
+    width:38px; height:38px;
+    border:1px solid var(--sand);
+    border-radius:50%;
+    margin-bottom:28px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .pillar-mark span{width:7px; height:7px; background:var(--navy); border-radius:50%;}
+  .pillar h3{
+    font-size:1.18rem;
+    margin-bottom:14px;
+    font-weight:500;
+  }
+  .pillar p{
+    font-size:0.95rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- ORIGIN CAROUSEL ---------- */
+  .origin{
+    max-width:1180px; margin:0 auto;
+    padding:100px 32px 40px;
+  }
+  .origin-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:32px; margin-bottom:48px; flex-wrap:wrap;
+  }
+  .origin-head h2{
+    font-size:clamp(1.6rem, 2.4vw, 2.1rem);
+    margin-top:18px;
+    max-width:16ch;
+    font-weight:500;
+  }
+  .origin-controls{display:flex; gap:10px;}
+  .origin-controls button{
+    width:42px; height:42px;
+    border:1px solid var(--line);
+    border-radius:50%;
+    background:var(--white);
+    color:var(--navy);
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .origin-controls button:hover{border-color:var(--sand); background:var(--sand-light);}
+  .origin-controls button:active{transform:scale(0.94);}
+  .origin-controls button:focus-visible{outline:2px solid var(--sand); outline-offset:3px;}
+
+  .origin-track-wrap{overflow:hidden; padding-bottom:8px;}
+  .origin-track{
+    display:flex; gap:24px;
+    transition:transform 0.5s cubic-bezier(.22,1,.36,1);
+  }
+  .origin-card{
+    flex:0 0 calc(33.333% - 16px);
+    background:var(--sand-light);
+    border:1px solid var(--line);
+    padding:32px 28px;
+    border-radius:2px;
+  }
+  .origin-card .country{
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    font-weight:500;
+    color:var(--navy-deep);
+    margin-bottom:18px;
+  }
+  .origin-card dl{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:8px 14px;
+    margin-bottom:16px;
+  }
+  .origin-card dt{
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--sand);
+    align-self:start;
+    padding-top:1px;
+  }
+  .origin-card dd{
+    font-size:0.88rem;
+    color:var(--ink-soft);
+  }
+  .origin-card .notes{
+    font-size:0.88rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-top:14px;
+  }
+  .origin-dots{
+    display:flex; gap:8px; justify-content:center; margin-top:32px;
+  }
+  .origin-dots button{
+    width:7px; height:7px; border-radius:50%;
+    border:none; background:var(--line); cursor:pointer;
+    padding:0; transition:background 0.2s ease, transform 0.2s ease;
+  }
+  .origin-dots button[aria-current="true"]{background:var(--sand); transform:scale(1.3);}
+
+  @media (max-width: 880px){
+    .origin-card{flex:0 0 calc(100% - 0px);}
+  }
+  @media (min-width: 881px) and (max-width: 1080px){
+    .origin-card{flex:0 0 calc(50% - 12px);}
+  }
+
+  /* ---------- WHY / STAT BAND ---------- */
+  .why{
+    max-width:1180px; margin:0 auto;
+    padding:110px 32px;
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:72px;
+    align-items:start;
+  }
+  .why-head .intro-label{padding-top:6px;}
+  .why h2{
+    font-size:clamp(1.8rem, 2.6vw, 2.5rem);
+    line-height:1.18;
+    margin-top:18px;
+    max-width:12ch;
+  }
+  .why-list{list-style:none;}
+  .why-list li{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .why-list li:last-child{border-bottom:1px solid var(--line);}
+  .why-num{
+    font-family:'Fraunces', serif;
+    font-size:0.95rem;
+    color:var(--sand);
+    font-weight:600;
+    padding-top:2px;
+  }
+  .why-list h4{
+    font-family:'Manrope', sans-serif;
+    font-size:1.02rem;
+    font-weight:700;
+    color:var(--navy-deep);
+    margin-bottom:6px;
+  }
+  .why-list p{font-size:0.94rem; color:var(--ink-soft); line-height:1.6; max-width:48ch;}
+
+  /* ---------- CLOSING CTA ---------- */
+  .closing{
+    background:var(--navy);
+    color:var(--white);
+    text-align:center;
+    padding:100px 32px;
+  }
+  .closing h2{
+    color:var(--white);
+    font-size:clamp(1.7rem, 3vw, 2.4rem);
+    max-width:18ch;
+    margin:0 auto 32px;
+    font-weight:500;
+  }
+  .closing .btn-primary{display:inline-block;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:48px 32px;
+    max-width:1180px; margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  footer .logo{font-size:1.05rem;}
+  footer p{font-size:0.85rem; color:var(--ink-soft);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 880px){
+    nav ul{display:none;}
+    .hero-inner{grid-template-columns:1fr; padding:90px 24px 64px;}
+    .intro{grid-template-columns:1fr; padding:64px 24px;}
+    .pillars-grid{grid-template-columns:1fr;}
+    .pillar{border-right:none; border-bottom:1px solid var(--line);}
+    .why{grid-template-columns:1fr; padding:72px 24px;}
+    .nav-cta{padding:8px 14px; font-size:0.82rem;}
+  }
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="nav-wrap">
-    <a href="#home" class="logo">TOBARO<span>.</span></a>
-
+    <a href="#" class="logo">TOBARO<span>.</span></a>
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#coffee">Projects</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#why">Why Tobaro</a></li>
       </ul>
     </nav>
-
-    <a href="#contact" class="nav-cta">Contact</a>
+    <a href="#contact" class="nav-cta">Contact Us</a>
   </div>
 </header>
 
-<main>
-
-<section id="home" class="hero">
+<section class="hero">
+  <div class="horizon" aria-hidden="true">
+    <svg viewBox="0 0 1180 520" preserveAspectRatio="none">
+      <path d="M0,520 L0,400 C160,360 280,420 420,390 C560,360 640,300 800,320 C940,338 1040,290 1180,300 L1180,520 Z" fill="rgba(201,173,128,0.07)"/>
+      <path d="M0,520 L0,440 C200,410 360,460 540,430 C700,404 820,360 980,380 C1080,392 1130,372 1180,378 L1180,520 Z" fill="rgba(201,173,128,0.13)"/>
+      <path d="M0,520 L0,478 C220,460 460,492 660,470 C860,448 1000,440 1180,452 L1180,520 Z" fill="rgba(201,173,128,0.22)"/>
+    </svg>
+  </div>
   <div class="hero-inner">
     <div>
+      <div class="eyebrow">Tobaro Management Company Ltd</div>
       <h1>Building Sustainable Businesses Across Africa</h1>
     </div>
-
-    <div>
-      <p>Management and business development focused on hospitality, coffee trading, and strategic growth.</p>
-      <div>
-        <a class="btn-primary" href="#contact">Partner With Us</a>
-        <a class="btn-ghost" href="#services">Services</a>
+    <div class="hero-side">
+      <p>Tobaro Management Company Ltd is a management and business development company focused on creating value through hospitality, coffee trading, and strategic business solutions. We partner with businesses to improve operations, unlock growth opportunities, and build sustainable enterprises.</p>
+      <div class="cta-row">
+        <a href="#contact" class="btn-primary">Partner With Us</a>
+        <a href="#services" class="btn-ghost">Our Services</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="about">
-  <h2>About</h2>
-  <p>We turn ambition into infrastructure.</p>
+<section class="intro" id="about">
+  <div class="intro-label">Taking You Forward</div>
+  <p>We work alongside operators and investors to turn <strong>ambition into infrastructure</strong> — across hospitality floors, coffee supply chains, and the strategic decisions in between.</p>
 </section>
 
-<section id="services">
-  <h2>Services</h2>
+<section class="pillars" id="services">
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-mark"><span></span></div>
+      <h3>Hospitality Management</h3>
+      <p>Hotel operations and consultancy built on hands-on management, guest experience, and disciplined performance.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-mark"><span></span></div>
+      <h3>Coffee Sourcing & Export</h3>
+      <p>Connecting African coffee origins to international buyers, with quality and traceability at every stage.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-mark"><span></span></div>
+      <h3>Business Development</h3>
+      <p>Project management and strategic partnerships that turn opportunity into sustainable, well-run enterprise.</p>
+    </div>
+  </div>
 </section>
 
-<section id="coffee">
-  <h2>Projects</h2>
+<section class="origin" id="coffee">
+  <div class="origin-head">
+    <div>
+      <div class="intro-label">Coffee Sourcing & Export</div>
+      <h2>Origins we work with</h2>
+    </div>
+    <div class="origin-controls">
+      <button type="button" id="origin-prev" aria-label="Previous origin">&#8592;</button>
+      <button type="button" id="origin-next" aria-label="Next origin">&#8594;</button>
+    </div>
+  </div>
+
+  <div class="origin-track-wrap">
+    <div class="origin-track" id="origin-track">
+      <div class="origin-card">
+        <div class="country">Ethiopia — Yirgacheffe</div>
+        <dl>
+          <dt>Altitude</dt><dd>1,900–2,200m</dd>
+          <dt>Process</dt><dd>Washed</dd>
+          <dt>Harvest</dt><dd>Oct – Dec</dd>
+        </dl>
+        <p class="notes">Floral, citrus-forward cups prized by specialty roasters worldwide.</p>
+      </div>
+      <div class="origin-card">
+        <div class="country">Rwanda — Lake Kivu</div>
+        <dl>
+          <dt>Altitude</dt><dd>1,700–2,000m</dd>
+          <dt>Process</dt><dd>Fully washed</dd>
+          <dt>Harvest</dt><dd>Mar – Jun</dd>
+        </dl>
+        <p class="notes">Bright acidity with notes of red fruit, grown along volcanic soils.</p>
+      </div>
+      <div class="origin-card">
+        <div class="country">Uganda — Rwenzori</div>
+        <dl>
+          <dt>Altitude</dt><dd>1,500–1,900m</dd>
+          <dt>Process</dt><dd>Natural & washed</dd>
+          <dt>Harvest</dt><dd>Apr – Jul</dd>
+        </dl>
+        <p class="notes">Full-bodied, chocolatey profile from the slopes of the Rwenzori range.</p>
+      </div>
+      <div class="origin-card">
+        <div class="country">Burundi — Kayanza</div>
+        <dl>
+          <dt>Altitude</dt><dd>1,700–2,000m</dd>
+          <dt>Process</dt><dd>Washed</dd>
+          <dt>Harvest</dt><dd>Mar – Jun</dd>
+        </dl>
+        <p class="notes">Clean, sweet, and well-balanced — an emerging origin gaining buyer interest.</p>
+      </div>
+    </div>
+  </div>
+  <div class="origin-dots" id="origin-dots"></div>
 </section>
 
-<section id="why">
-  <h2>Why Tobaro</h2>
+<section class="why" id="why">
+  <div class="why-head">
+    <div class="intro-label">Why Tobaro</div>
+    <h2>Built for the long partnership, not the single deal.</h2>
+  </div>
+  <ul class="why-list">
+    <li>
+      <span class="why-num">01</span>
+      <div>
+        <h4>Professional Management</h4>
+        <p>Disciplined operations and clear reporting, run by people who treat your business as their own.</p>
+      </div>
+    </li>
+    <li>
+      <span class="why-num">02</span>
+      <div>
+        <h4>Reliable Partnerships</h4>
+        <p>We show up consistently — for investors, hospitality clients, and coffee buyers alike.</p>
+      </div>
+    </li>
+    <li>
+      <span class="why-num">03</span>
+      <div>
+        <h4>African Market Expertise</h4>
+        <p>Local knowledge paired with international standards, across hospitality and trade.</p>
+      </div>
+    </li>
+    <li>
+      <span class="why-num">04</span>
+      <div>
+        <h4>Sustainable Growth</h4>
+        <p>We build enterprises designed to outlast a single project cycle or season.</p>
+      </div>
+    </li>
+  </ul>
 </section>
 
-<section id="contact">
-  <h2>Contact</h2>
+<section class="closing" id="contact">
+  <h2>Let's build something that lasts.</h2>
+  <a href="#" class="btn-primary">Get in Touch</a>
 </section>
 
-</main>
+<footer>
+  <a href="#" class="logo">TOBARO<span>.</span></a>
+  <p>© 2026 Tobaro Management Company Ltd. All rights reserved.</p>
+</footer>
 
 <script>
-/* SMOOTH SCROLL WITH OFFSET */
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-  link.addEventListener("click",function(e){
-    const target=document.querySelector(this.getAttribute("href"));
-    if(!target) return;
+(function(){
+  var track = document.getElementById('origin-track');
+  var prevBtn = document.getElementById('origin-prev');
+  var nextBtn = document.getElementById('origin-next');
+  var dotsWrap = document.getElementById('origin-dots');
+  var cards = track.children;
+  var total = cards.length;
 
-    e.preventDefault();
+  function cardsPerView(){
+    var w = window.innerWidth;
+    if(w <= 880) return 1;
+    if(w <= 1080) return 2;
+    return 3;
+  }
 
-    const offset=90;
-    const top=target.getBoundingClientRect().top+window.pageYOffset-offset;
+  var index = 0;
 
-    window.scrollTo({
-      top,
-      behavior:"smooth"
-    });
-  });
-});
+  function maxIndex(){
+    return Math.max(0, total - cardsPerView());
+  }
 
-/* ACTIVE NAV HIGHLIGHT */
-const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll("nav a");
-
-window.addEventListener("scroll",()=>{
-  let current="";
-
-  sections.forEach(sec=>{
-    if(pageYOffset>=sec.offsetTop-120){
-      current=sec.id;
+  function renderDots(){
+    dotsWrap.innerHTML = '';
+    var pages = maxIndex() + 1;
+    for(var i=0; i<pages; i++){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Go to slide ' + (i+1));
+      b.setAttribute('aria-current', i === index ? 'true' : 'false');
+      (function(i){
+        b.addEventListener('click', function(){ goTo(i); });
+      })(i);
+      dotsWrap.appendChild(b);
     }
+  }
+
+  function update(){
+    var cardWidth = cards[0].getBoundingClientRect().width;
+    var gap = 24;
+    var offset = index * (cardWidth + gap);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+    renderDots();
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === maxIndex();
+  }
+
+  function goTo(i){
+    index = Math.min(Math.max(i, 0), maxIndex());
+    update();
+  }
+
+  prevBtn.addEventListener('click', function(){ goTo(index - 1); });
+  nextBtn.addEventListener('click', function(){ goTo(index + 1); });
+
+  window.addEventListener('resize', function(){
+    index = Math.min(index, maxIndex());
+    update();
   });
 
-  navLinks.forEach(link=>{
-    link.classList.remove("active");
-    if(link.getAttribute("href")==="#"+current){
-      link.classList.add("active");
-    }
-  });
-});
+  update();
+})();
 </script>
-
 </body>
 </html>
