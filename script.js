@@ -2,20 +2,38 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* mobile nav toggle */
+  /* mobile nav — offcanvas open/close */
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
+  const overlay = document.querySelector('.nav-overlay');
+
+  const openMenu = () => {
+    links.classList.add('open');
+    if (overlay) overlay.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-locked');
+  };
+  const closeMenu = () => {
+    links.classList.remove('open');
+    if (overlay) overlay.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-locked');
+  };
+
   if (toggle && links) {
     toggle.addEventListener('click', () => {
-      const open = links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.textContent = open ? '✕' : '☰';
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      isOpen ? closeMenu() : openMenu();
     });
-    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.textContent = '☰';
-      toggle.setAttribute('aria-expanded', 'false');
-    }));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+    if (overlay) overlay.addEventListener('click', closeMenu);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+    /* keep state correct if the viewport is resized past the desktop breakpoint */
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) closeMenu();
+    });
   }
 
   /* mark active nav link */

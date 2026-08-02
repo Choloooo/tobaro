@@ -6,24 +6,28 @@
 <title>Partners — House of Tobaro</title>
 <meta name="description" content="Work with House of Tobaro as a coffee or cocoa supplier, or as a buyer seeking African-origin ingredients.">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 
 <header class="site-header">
   <nav class="nav">
-    <a href="index.html" class="brand"><img src="logo_ondark.png" alt="House of Tobaro" class="brand-logo"></a>
-    <ul class="nav-links">
+    <a href="index.html" class="brand"><img src="assets/logo_ondark.png" alt="House of Tobaro" class="brand-logo"></a>
+    <ul class="nav-links" id="primary-nav">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="partners.html">Partners</a></li>
       <li><a href="contact.html">Contact</a></li>
+      <li class="nav-links-cta"><a href="contact.html" class="btn btn-primary">Partner With Us</a></li>
     </ul>
     <div class="nav-cta">
       <a href="contact.html" class="btn btn-primary">Partner With Us</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="hamburger"><span></span><span></span><span></span></span>
+      </button>
     </div>
   </nav>
+  <div class="nav-overlay"></div>
 </header>
 
 <section class="page-hero">
