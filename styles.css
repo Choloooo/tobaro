@@ -135,7 +135,7 @@ p{ margin:0 0 1em; }
 .brand span{ color:var(--gold-500); font-style:italic; }
 
 .brand-logo{
-  height:100px; width:auto; display:block;
+  height:50px; width:auto; display:block;
 }
 .footer-brand .brand-logo{ height:52px; margin-bottom:18px; }
 .nav-links{
