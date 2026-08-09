@@ -175,8 +175,8 @@ p{ margin:0 0 1em; }
   counter-reset:navcount;
   transform:translateX(100%);
   transition:transform .4s cubic-bezier(.4,0,.2,1);
-  overflow-y:auto;
-  z-index:70;
+
+  z-index:7000;
 }
 .nav-links::before{
   content:'Menu';
